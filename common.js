@@ -1,22 +1,5 @@
 
 //下载app
-/*function dowlond (){
-	 var u = navigator.userAgent;
-	 var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; 
-	 var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-     if (isAndroid) {
-     		try {
-     			var elemIF = document.createElement("iframe");
-     			elemIF.src = 'http://XXX.apk';
-     			elemIF.style.display = "none";
-     			document.body.appendChild(elemIF);
-            } catch (e) {
-                alert('下载失败');
-            }
-        } else if (isIOS) {
-        	alert('IOS用户请前往AppStore下载');
-        } else {};
-}   */
 export const dowlond = () => {
 		 let u = navigator.userAgent;let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
      if (isAndroid) {
@@ -48,12 +31,6 @@ export const space = (obj) => obj.replace(/\s+/g, "");
 //判断数据类型
 export const judge = (obj) => Object.prototype.toString.call(obj).slice(8,-1);
 //获取url中的参数
-/*function getUrlParam(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-    var r = window.location.search.substr(1).match(reg); //匹配目标参数
-    if (r != null) return unescape(r[2]);
-    return null; //返回参数值
-}*/
 export const getUrlParam = (name) => {
 	let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     let r = window.location.search.substr(1).match(reg); //匹配目标参数
