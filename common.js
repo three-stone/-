@@ -65,6 +65,30 @@ function () {
 	Array.prototype.push.apply(arry,arry1)
 	console.log(arry)
 }
-
-
+//消息滚动（上下）
+function roll(){
+            var timer,top;    
+            var ulObj = $(".rollBox").find("ul"),
+                length = $(".rollBoxOne li").length,  
+                liFirst = $(".rollBoxOne").find("li").eq(0),
+                height=Number($(".rollBoxOne").find("li").eq(0).height()),
+                liSec = liFirst.next();
+            ulObj.append(liFirst.clone()).append(liSec.clone());  //把第一个第二个都添加到<ul>标签中
+            clearInterval(timer);
+            timer = setInterval(function(){  //设置定时器
+                var top = ulObj.css("margin-top");
+                top = +top.slice(0,-2);
+                if(top != -(height * length)){  //获取现在的高度如果没有到最后就上移
+                    top -= height;
+                    ulObj.css({"-webkit-transition":"all 1s","transition":"all 1s","margin-top":top});
+                }else{  //如果到了最后就迅速到零
+                    top = 0;
+                    ulObj.css({"-webkit-transition":"none","transition":"none","margin-top":top});
+                    setTimeout(function(){  //这里加一个延时器，也是要放在队列最后去执行，为了避免两个动画合并
+                        top -= height;
+                        ulObj.css({"-webkit-transition":"all 1s","transition":"all 1s","margin-top":top});
+                    },0)
+                }
+            },2000);
+}
 /*ios 点击有阴影 css 中加 -webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;*/
